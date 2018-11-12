@@ -73,5 +73,7 @@ dkms.conf
 # vim swp file
 *.swp
 
+3/3-2/temp
+
 # End of https://www.gitignore.io/api/c,linux
 

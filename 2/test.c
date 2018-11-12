@@ -8,9 +8,20 @@
 
 int main(int argc, const char* argv[])
 {
-  syscall(__NR_ftrace, getpid());
-  int a = open("./abc.txt", O_RDONLY, S_IRUSR);
-  printf("pid: %d\n", a);
-  //printf("%d\n", errno);
+  char buf[1024];
+  pid_t pid = getpid();
+  int fd;
+  int n;
+  syscall(__NR_ftrace, pid);
+
+    fd = open("abc.txt", O_RDONLY);
+    close(fd);
+  lseek(fd, -14, SEEK_END);
+//  read(fd, buf, 14);
+  write(STDOUT_FILENO, buf, n);
+  syscall(__NR_ftrace, 0);
+
   return 0;
 }
+
+
